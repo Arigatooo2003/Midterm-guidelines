@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cylinder Volume Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cylinder</h1>
+        <p>A cylinder is a fundamental 3D shape in geometry, which has two parallel circular bases at equal distances. LPG gas cylinder is one such example of a cylinder in real life.</p>
+        <p>The radius of a cylinder (r) is the radius of the 2 bases found at the top and the bottom of the cylinder. The height of the cylinder (h) is the distance between the two circular bases. The volume of the cylinder (v) can be derived as shown in the picture below.</p>
+        <div class="row">
+            <div class="column">
+                <img src="tank.jpg" alt="tank">
+                <p class="caption">Cylinder tank<br>Source: <a href="https://pixabay.com">Pixabay</a></p>
+            </div>
+            <div class="column">
+                <h2>Cylinder volume</h2>
+                <img src="cylinder.png" alt="cylinder">
+            </div>
+            <div class="column">
+                <h2>Volume calculator</h2>
+                <form id="volumeForm">
+                    <label for="radius">Radius:</label>
+                    <input type="number" id="radius" name="radius" required><br>
+                    <label for="height">Height:</label>
+                    <input type="number" id="height" name="height" required><br>
+                    <label for="unit">Unit:</label>
+                    <select id="unit" name="unit">
+                        <option value="cm">cm</option>
+                        <option value="mm">mm</option>
+                    </select><br>
+                    <button type="button" onclick="calculateVolume()">Calculate</button>
+                </form>
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function calculateVolume() {
+    let radius = parseFloat(document.getElementById('radius').value);
+    let height = parseFloat(document.getElementById('height').value);
+    let unit = document.getElementById('unit').value;
+    
+    if (unit === 'mm') {
+        // Convert mm to cm
+        radius = radius / 10;
+        height = height / 10;
+    }
+
+    // Calculate the volume in cm³
+    let volume = Math.PI * Math.pow(radius, 2) * height;
+
+    // Round to the nearest hundredth
+    volume = Math.round(volume * 100) / 100;
+
+    // Display the result
+    document.getElementById('result').innerText = `Volume = ${volume} cm³`;
+}
+    </script>
+    
+</body>
+</html>
